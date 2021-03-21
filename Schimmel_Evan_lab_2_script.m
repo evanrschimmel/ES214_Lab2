@@ -15,7 +15,7 @@ tf = 20; %s
 maxstep = 0.01;
 tol = 1e-6;
 
-theta0 = -pi/2; %rad
+theta0 = (-pi/2)-0.0425; %rad
 omega0 = 0; %rad/s
 
 lpcg = (lp-ds)/2; %m
@@ -24,7 +24,7 @@ i=0;
 swingtime=0;
 weightoffset=0;
 
-for pos=4:0.1:34
+for pos=4:0.5:34
     t=0;
     i=i+1;
     lwcg=pos*(10^-2);
@@ -32,7 +32,7 @@ for pos=4:0.1:34
     k = g*(mp*lpcg+mw*lwcg);
     sim('Schimmel_Evan_lab_2_model')
     weightoffset(i)=pos;
-    swingtime(i)=t(end);
+    swingtime(i)=t(end)-t_cross;
 end
 
 figure
@@ -40,3 +40,4 @@ plot(weightoffset, swingtime,'b-',Lwcg_exp,swing_time_exp,'ro')
 legend('Simulation','Experiment');
 xlabel('Moveable weight offset (cm)')
 ylabel('Swing time (s)')
+axis([0 35 0.22 0.34]);
