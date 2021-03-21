@@ -24,7 +24,7 @@ i=0;
 swingtime=0;
 weightoffset=0;
 
-for pos=4:0.5:34
+for pos=4:0.1:34
     t=0;
     i=i+1;
     lwcg=pos*(10^-2);
