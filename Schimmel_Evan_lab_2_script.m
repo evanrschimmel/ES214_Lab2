@@ -9,7 +9,7 @@ dw = 5e-2; %m
 ds = 2.5e-2; %m
 g = 9.81; %m/s^2
 
-tf = 2; %s
+tf = 20; %s
 maxstep = 0.01;
 tol = 1e-6;
 
