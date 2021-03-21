@@ -17,15 +17,23 @@ theta0 = -pi/2; %rad
 omega0 = 0; %rad/s
 
 lpcg = (lp-ds)/2; %m
-lwcg = 20e-2; %m
 
-J = ((mp*lp^2)/12)+mp*(lpcg^2)+(1/2)*mw*((dw/2)^2)+mw*(lwcg^2);
+i=0;
+swingtime=0;
+weightoffset=0;
 
-k = g*(mp*lpcg+mw*lwcg);
-
-sim('Schimmel_Evan_lab_2_model')
+for pos=4:0.1:34
+    t=0;
+    i=i+1;
+    lwcg=pos*(10^-2);
+    J = ((mp*lp^2)/12)+mp*(lpcg^2)+(1/2)*mw*((dw/2)^2)+mw*(lwcg^2);
+    k = g*(mp*lpcg+mw*lwcg);
+    sim('Schimmel_Evan_lab_2_model')
+    weightoffset(i)=pos;
+    swingtime(i)=t(end);
+end
 
 figure
-plot(t, theta)
-xlabel('Time (s)')
-ylabel('Angular displacement (rad)')
+plot(weightoffset, swingtime)
+xlabel('Moveable weight offset (cm)')
+ylabel('Swing time (s)')
