@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+load('swing_time_data');
+
 mp = 68.5e-3; %kg
 mw = 88e-3; %kg
 lp = 43.2e-2; %m
@@ -34,6 +36,7 @@ for pos=4:0.1:34
 end
 
 figure
-plot(weightoffset, swingtime)
+plot(weightoffset, swingtime,'b-',Lwcg_exp,swing_time_exp,'ro')
+legend('Simulation','Experiment');
 xlabel('Moveable weight offset (cm)')
 ylabel('Swing time (s)')
